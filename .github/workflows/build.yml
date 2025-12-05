@@ -11,8 +11,10 @@ jobs:
   build:
     name: Build and analyze on SonarCloud
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -40,4 +42,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Veda-Sree_sample-java-sonar -Dsonar.organization=veda-sree
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Veda-Sree_sample-java-sonar -Dsonar.organization=veda-sree -Dsonar.host.url=https://sonarcloud.io
